@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">myEventApplication</string>
+
+    <!-- text menu -->
+    <string name="title_home">Home</string>
+    <string name="title_upcoming">Upcoming</string>
+    <string name="title_ended">Ended</string>
+    <string name="txt_dicoding_event">Dicoding Event</string>
+    <string name="txtt_upcoming_event">Upcoming Event</string>
+    <string name="txt_finished_event">Finished Event</string>
+</resources>
