@@ -3,58 +3,24 @@ package com.example.myeventapplication.data
 import com.google.gson.annotations.SerializedName
 
 data class EventResponse(
-    @field:SerializedName("error")
-    val error: Boolean? = null,
-
-    @field:SerializedName("message")
-    val message: String? = null,
-
-    @field:SerializedName("listEvents")
-    val listEvents: List<ListEventsItem?>? = null
-
+    val error: Boolean,
+    val message: String,
+    val listEvents: List<EventData>
 )
 
-data class ListEventsItem(
-
-    @field:SerializedName("summary")
-    val summary: String? = null,
-
-    @field:SerializedName("mediaCover")
-    val mediaCover: String? = null,
-
-    @field:SerializedName("registrants")
-    val registrants: Int? = null,
-
-    @field:SerializedName("imageLogo")
-    val imageLogo: String? = null,
-
-    @field:SerializedName("link")
-    val link: String? = null,
-
-    @field:SerializedName("description")
-    val description: String? = null,
-
-    @field:SerializedName("ownerName")
-    val ownerName: String? = null,
-
-    @field:SerializedName("cityName")
-    val cityName: String? = null,
-
-    @field:SerializedName("quota")
-    val quota: Int? = null,
-
-    @field:SerializedName("name")
-    val name: String? = null,
-
-    @field:SerializedName("id")
-    val id: Int? = null,
-
-    @field:SerializedName("beginTime")
-    val beginTime: String? = null,
-
-    @field:SerializedName("endTime")
-    val endTime: String? = null,
-
-    @field:SerializedName("category")
-    val category: String? = null
+data class EventData(
+    val id: Int,
+    val name: String,
+    val summary: String,
+    val description: String,
+    val imageLogo: String,
+    val mediaCover: String,
+    val category: String,
+    val ownerName: String,
+    val cityName: String,
+    val quota: Int,
+    val registrants: Int,
+    val beginTime: String,
+    val endTime: String,
+    val link: String
 )
