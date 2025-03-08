@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 class MainRepo(private val apiService: ApiService) {
     suspend fun getUpComingEvent(): List<EventData> {
-        val response = apiService.getAllEvent(active = 0)
+        val response = apiService.getAllEvent(active = 1)
         return if (!response.error) response.listEvents else emptyList()
     }
 

@@ -21,15 +21,14 @@ class UpcomingFragment : Fragment() {
 
     private var _binding: FragmentUpcomingBinding? = null
     private val binding get() = _binding!!
-
     private val mainViewModel: MainViewModel by viewModel()
-
     private lateinit var adapter: UpComingAdapter
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentUpcomingBinding.inflate(inflater, container, false)
         adapter = UpComingAdapter()
         binding.rvUpComingEvent.adapter = adapter

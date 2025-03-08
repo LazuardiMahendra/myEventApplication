@@ -21,5 +21,19 @@ class MainViewModel(private val repo: MainRepo) : ViewModel() {
         }
     }
 
+    fun getDoneEvent() {
+        viewModelScope.launch {
+            val eventList = repo.getDoneEvent()
+            _events.value = eventList
+        }
+    }
+
+    fun getAllEvent() {
+        viewModelScope.launch {
+            val eventList = repo.getAllEvent()
+            _events.value = eventList
+        }
+    }
+
 
 }
