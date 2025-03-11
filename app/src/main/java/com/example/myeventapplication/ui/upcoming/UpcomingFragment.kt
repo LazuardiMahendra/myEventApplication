@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myeventapplication.ViewModel.MainViewModel
 import com.example.myeventapplication.databinding.FragmentUpcomingBinding
 import com.example.myeventapplication.ui.adapter.UpComingAdapter
-import retrofit2.http.Tag
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -23,7 +22,6 @@ class UpcomingFragment : Fragment() {
     private val binding get() = _binding!!
     private val mainViewModel: MainViewModel by viewModel()
     private lateinit var adapter: UpComingAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -60,7 +58,6 @@ class UpcomingFragment : Fragment() {
     private fun getUpComingEvent() {
         mainViewModel.getUpComingEvent()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

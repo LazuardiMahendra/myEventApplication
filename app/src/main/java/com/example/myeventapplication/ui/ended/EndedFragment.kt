@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myeventapplication.ViewModel.MainViewModel
 import com.example.myeventapplication.databinding.FragmentEndedBinding
 import com.example.myeventapplication.ui.adapter.DoneAdapter
-import com.example.myeventapplication.ui.adapter.UpComingAdapter
 
 class EndedFragment : Fragment() {
 
@@ -35,7 +33,6 @@ class EndedFragment : Fragment() {
         mainViewModel.events.observe(viewLifecycleOwner, { event ->
             adapter.submitList(event)
         })
-
         return root
     }
 

@@ -11,9 +11,11 @@ interface ApiService {
     @GET(Routing.GET_ALL_EVENT_URL)
     suspend fun getAllEvent(
         @Query("active") active: Int,
+        @Query("q") keyword: String?,
+        @Query("limit") limit: Int?,
     ): EventResponse
 
     @GET(Routing.GET_SINGLE_EVENT_URL)
-    fun getSingleEvent(@Path("event_id") event_id: String): Call<EventResponse>
+    fun getSingleEvent(@Path("event_id") event_id: String): EventResponse
 
 }
