@@ -23,6 +23,8 @@ class UpcomingFragment : Fragment() {
     private val mainViewModel: MainViewModel by viewModel()
     private lateinit var adapter: UpComingAdapter
 
+    private var keyword: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -42,21 +44,23 @@ class UpcomingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getUpComingEvent()
-
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
             searchView.editText.setOnEditorActionListener { textView, actionId, event ->
-                searchBar.setText(searchView.text)
+                keyword = searchView.text.toString()
+                searchBar.setText(keyword)
                 searchView.hide()
-                Toast.makeText(requireContext(), searchView.text, Toast.LENGTH_SHORT).show()
-                false
+                Toast.makeText(requireContext(), keyword, Toast.LENGTH_SHORT).show()
+                getUpComingEvent(keyword)
+                true
             }
+            false
         }
+        getUpComingEvent(keyword)
     }
 
-    private fun getUpComingEvent() {
-        mainViewModel.getUpComingEvent()
+    private fun getUpComingEvent(keyword: String?) {
+        mainViewModel.getUpComingEvent(keyword)
     }
 
     override fun onDestroyView() {

@@ -11,8 +11,8 @@ interface ApiService {
     @GET(Routing.GET_ALL_EVENT_URL)
     suspend fun getAllEvent(
         @Query("active") active: Int,
-        @Query("q") keyword: String?,
-        @Query("limit") limit: Int?,
+        @Query("q") keyword: String? = null,
+        @Query("limit") limit: Int? = null,
     ): EventResponse
 
     @GET(Routing.GET_SINGLE_EVENT_URL)

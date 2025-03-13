@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_ended"
-        android:name="com.example.myeventapplication.ui.ended.EndedFragment"
+        android:name="com.example.myeventapplication.ui.ended.DoneFragment"
         android:label="@string/title_ended"
         tools:layout="@layout/fragment_ended" />
 </navigation>

@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myeventapplication.data.EventData
-import com.example.myeventapplication.databinding.FragmentEndedBinding
 import com.example.myeventapplication.databinding.ItemEventBinding
 
-class UpComingAdapter : ListAdapter<EventData, UpComingAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class TopDoneAdapter : ListAdapter<EventData, TopDoneAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     class MyViewHolder(val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(model: EventData) {

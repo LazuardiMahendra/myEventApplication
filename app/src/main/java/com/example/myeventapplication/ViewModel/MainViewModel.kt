@@ -14,23 +14,30 @@ class MainViewModel(private val repo: MainRepo) : ViewModel() {
     private val _events = MutableLiveData<List<EventData>>()
     val events: LiveData<List<EventData>> = _events
 
-    fun getUpComingEvent() {
+    fun getUpComingEvent(keyword: String?) {
         viewModelScope.launch {
-            val eventList = repo.getUpComingEvent()
+            val eventList = repo.getUpComingEvent(1, keyword, null)
             _events.value = eventList
         }
     }
 
-    fun getDoneEvent() {
+    fun getDoneEvent(keyword: String?) {
         viewModelScope.launch {
-            val eventList = repo.getDoneEvent()
+            val eventList = repo.getDoneEvent(0, keyword, null)
             _events.value = eventList
         }
     }
 
-    fun getAllEvent() {
+    fun getTopUpComingEvent() {
         viewModelScope.launch {
-            val eventList = repo.getAllEvent()
+            val eventList = repo.getAllEvent(1, null, 5)
+            _events.value = eventList
+        }
+    }
+
+    fun getTopDoneEvent() {
+        viewModelScope.launch {
+            val eventList = repo.getAllEvent(0, null, 5)
             _events.value = eventList
         }
     }
