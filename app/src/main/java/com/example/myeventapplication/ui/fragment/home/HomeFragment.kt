@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +39,14 @@ class HomeFragment : Fragment() {
 
         mainViewModel.upComingEvent.observe(viewLifecycleOwner) { events ->
             topUpComingAdapter.submitList(events)
+        }
+
+        mainViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                binding.tvError.visibility = View.VISIBLE
+                binding.tvError.text = it
+            }
         }
 
         return root

@@ -10,4 +10,5 @@
     <string name="txt_finished_event">Finished Event</string>
     <string name="txt_example_search_bar">e.g Belajar Android</string>
     <string name="txt_daftar_sekarang">Kunjungi Dicoding</string>
+    <string name="error_tidak_diketahui">Error tidak diketahui</string>
 </resources>
