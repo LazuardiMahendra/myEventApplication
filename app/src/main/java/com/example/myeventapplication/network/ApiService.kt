@@ -1,6 +1,7 @@
 package com.example.myeventapplication.network
 
 import com.example.myeventapplication.data.EventResponse
+import com.example.myeventapplication.data.EventSingleResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,6 +17,5 @@ interface ApiService {
     ): EventResponse
 
     @GET(Routing.GET_SINGLE_EVENT_URL)
-    fun getSingleEvent(@Path("event_id") event_id: String): EventResponse
-
+    suspend fun getSingleEvent(@Path("event_id") event_id: String): EventSingleResponse
 }

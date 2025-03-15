@@ -2,6 +2,7 @@ package com.example.myeventapplication.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.myeventapplication.data.EventData
 import com.example.myeventapplication.databinding.FragmentEndedBinding
 import com.example.myeventapplication.databinding.ItemEventBinding
+import com.example.myeventapplication.ui.fragment.upcoming.UpcomingFragmentDirections
 
 class UpComingAdapter : ListAdapter<EventData, UpComingAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -30,6 +32,10 @@ class UpComingAdapter : ListAdapter<EventData, UpComingAdapter.MyViewHolder>(DIF
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val event = getItem(position)
         holder.bind(event)
+        holder.itemView.setOnClickListener {
+            it.findNavController()
+                .navigate(UpcomingFragmentDirections.actionNavUpcomingToDetailEventActivity(event.id.toString()))
+        }
     }
 
     companion object {

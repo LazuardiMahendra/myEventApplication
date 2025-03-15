@@ -16,10 +16,10 @@
         android:theme="@style/Theme.MyEventApplication"
         tools:targetApi="31">
         <activity
-            android:name=".ui.detail.DetailEventActivity"
+            android:name=".ui.fragment.detail.DetailEventActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

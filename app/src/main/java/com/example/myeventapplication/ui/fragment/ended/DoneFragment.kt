@@ -1,4 +1,4 @@
-package com.example.myeventapplication.ui.ended
+package com.example.myeventapplication.ui.fragment.ended
 
 import android.os.Bundle
 import android.util.Log
@@ -49,7 +49,6 @@ class DoneFragment : Fragment() {
                 keyword = searchView.text.toString()
                 searchBar.setText(keyword)
                 searchView.hide()
-                Toast.makeText(requireContext(), keyword, Toast.LENGTH_SHORT).show()
                 getDoneEvent(keyword)
                 true
             }

@@ -18,7 +18,9 @@ constraintlayout = "2.2.1"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
 navigationFragmentKtx = "2.8.8"
+navigationFragmentKtxVersion = "2.7.5"
 navigationUiKtx = "2.8.8"
+navigationUiKtxVersion = "2.7.5"
 retrofit = "2.9.0"
 activity = "1.10.1"
 
@@ -28,6 +30,8 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-lifecycle-livedata-ktx-v262 = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtxVersion" }
 androidx-lifecycle-viewmodel-ktx-v262 = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
+androidx-navigation-ui-ktx-v275 = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
+androidx-navigation-fragment-ktx-v275 = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtxVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

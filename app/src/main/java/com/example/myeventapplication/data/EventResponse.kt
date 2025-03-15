@@ -8,6 +8,12 @@ data class EventResponse(
     val listEvents: List<EventData>
 )
 
+data class EventSingleResponse(
+    val error: Boolean,
+    val message: String,
+    val event: EventData
+)
+
 data class EventData(
     val id: Int,
     val name: String,
@@ -23,4 +29,23 @@ data class EventData(
     val beginTime: String,
     val endTime: String,
     val link: String
-)
+) {
+    companion object {
+        fun default() = EventData(
+            id = 0,
+            name = "error",
+            summary = "error",
+            description = "error",
+            imageLogo = "error",
+            mediaCover = "error",
+            category = "error",
+            ownerName = "error",
+            cityName = "error",
+            quota = 0,
+            registrants = 0,
+            beginTime = "error",
+            endTime = "error",
+            link = "error"
+        )
+    }
+}
