@@ -30,9 +30,12 @@ class DoneFragment : Fragment() {
     ): View {
         _binding = FragmentEndedBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        adapter = DoneAdapter()
-        binding.rvDoneEvent.adapter = adapter
-        binding.rvDoneEvent.layoutManager = LinearLayoutManager(requireContext())
+
+        initDoneEventAdapter()
+
+        mainViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
 
         mainViewModel.events.observe(viewLifecycleOwner, { event ->
             adapter.submitList(event)
@@ -56,6 +59,12 @@ class DoneFragment : Fragment() {
         }
 
         getDoneEvent(keyword)
+    }
+
+    private fun initDoneEventAdapter() {
+        adapter = DoneAdapter()
+        binding.rvDoneEvent.adapter = adapter
+        binding.rvDoneEvent.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun getDoneEvent(keyword: String?) {

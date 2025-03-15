@@ -28,7 +28,9 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
+        mainViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
 
         mainViewModel.doneEvent.observe(viewLifecycleOwner) { events ->
             topDoneAdapter.submitList(events)

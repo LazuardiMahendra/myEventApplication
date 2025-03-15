@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,12 +31,20 @@ class DetailEventActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        showLoading()
+
         getDetailEvent(args.eventId)
         initViewDetailEvent()
     }
 
     private fun getDetailEvent(eventId: String) {
         mainViewModel.getDetailEvent(eventId)
+    }
+
+    private fun showLoading() {
+        mainViewModel.isLoading.observe(this) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
     }
 
     private fun initViewDetailEvent() {

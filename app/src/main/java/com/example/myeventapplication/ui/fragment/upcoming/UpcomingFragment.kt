@@ -28,11 +28,13 @@ class UpcomingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentUpcomingBinding.inflate(inflater, container, false)
-        adapter = UpComingAdapter()
-        binding.rvUpComingEvent.adapter = adapter
-        binding.rvUpComingEvent.layoutManager = LinearLayoutManager(requireContext())
+
+        mainViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+        initUpComingEventAdapter()
 
         mainViewModel.events.observe(viewLifecycleOwner, { events ->
             adapter.submitList(events)
@@ -57,6 +59,12 @@ class UpcomingFragment : Fragment() {
             false
         }
         getUpComingEvent(keyword)
+    }
+
+    private fun initUpComingEventAdapter() {
+        adapter = UpComingAdapter()
+        binding.rvUpComingEvent.adapter = adapter
+        binding.rvUpComingEvent.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun getUpComingEvent(keyword: String?) {
