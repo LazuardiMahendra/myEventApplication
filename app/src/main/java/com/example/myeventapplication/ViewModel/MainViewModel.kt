@@ -20,43 +20,54 @@ class MainViewModel(private val repo: MainRepo) : ViewModel() {
     private val _doneEvent = MutableLiveData<List<EventData>>()
     val doneEvent: LiveData<List<EventData>> = _doneEvent
 
-
     private val _eventsSingle = MutableLiveData<EventData>()
     val eventsSingle: LiveData<EventData> = _eventsSingle
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun getUpComingEvent(keyword: String?) {
         viewModelScope.launch {
+            _isLoading.value = true
             val eventList = repo.getUpComingEvent(1, keyword, null)
             _events.value = eventList
+            _isLoading.value = false
         }
     }
 
     fun getDoneEvent(keyword: String?) {
         viewModelScope.launch {
+            _isLoading.value = true
             val eventList = repo.getDoneEvent(0, keyword, null)
             _events.value = eventList
+            _isLoading.value = false
         }
     }
 
     fun getTopUpComingEvent() {
         viewModelScope.launch {
+            _isLoading.value = true
             val eventList = repo.getAllEvent(1, null, 5)
             _upComingEvent.value = eventList
+            _isLoading.value = false
         }
     }
 
     fun getTopDoneEvent() {
         viewModelScope.launch {
+            _isLoading.value = true
             val eventList = repo.getAllEvent(0, null, 5)
             _doneEvent.value = eventList
+            _isLoading.value = false
         }
     }
 
     fun getDetailEvent(eventId: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             val eventList = repo.getDetailEvent(eventId)
             _eventsSingle.value = eventList
-            Log.d("VIEWMODEL", "Viewmodel : $eventList")
+            _isLoading.value = false
         }
     }
 

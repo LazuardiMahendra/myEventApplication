@@ -37,7 +37,7 @@ class DoneAdapter : ListAdapter<EventData, DoneAdapter.MyViewHolder>(DIFF_CALLBA
         holder.bind(event)
         holder.itemView.setOnClickListener {
             it.findNavController()
-                .navigate(HomeFragmentDirections.actionNavHomeToDetailEventActivity(event.id.toString()))
+                .navigate(DoneFragmentDirections.actionNavEndedToDetailEventActivity(event.id.toString()))
         }
     }
 
