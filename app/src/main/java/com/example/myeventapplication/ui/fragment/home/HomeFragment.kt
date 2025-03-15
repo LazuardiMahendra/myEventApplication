@@ -1,4 +1,4 @@
-package com.example.myeventapplication.ui.home
+package com.example.myeventapplication.ui.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myeventapplication.ViewModel.MainViewModel
 import com.example.myeventapplication.databinding.FragmentHomeBinding
 import com.example.myeventapplication.ui.adapter.TopDoneAdapter
+import com.example.myeventapplication.ui.adapter.TopUpComingAdapter
+import com.google.android.material.carousel.CarouselLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -17,20 +19,24 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val mainViewModel: MainViewModel by viewModel()
-    private lateinit var adapter: TopDoneAdapter
+    private lateinit var topDoneAdapter: TopDoneAdapter
+    private lateinit var topUpComingAdapter: TopUpComingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        initTopDoneEvent()
 
-        mainViewModel.events.observe(viewLifecycleOwner, { events ->
-            adapter.submitList(events)
-        })
+
+        mainViewModel.doneEvent.observe(viewLifecycleOwner) { events ->
+            topDoneAdapter.submitList(events)
+        }
+
+        mainViewModel.upComingEvent.observe(viewLifecycleOwner) { events ->
+            topUpComingAdapter.submitList(events)
+        }
 
         return root
     }
@@ -38,18 +44,33 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getTopDoneEvent()
+        getTopUpComingEvent()
+
+        initTopDoneEvent()
+        initTopUpComingEvent()
     }
 
     private fun initTopDoneEvent() {
-        adapter = TopDoneAdapter()
-        binding.rvDone.adapter = adapter
+        topDoneAdapter = TopDoneAdapter()
+        binding.rvDone.adapter = topDoneAdapter
         binding.rvDone.layoutManager = LinearLayoutManager(requireContext())
-
     }
 
     private fun getTopDoneEvent() {
         mainViewModel.getTopDoneEvent()
     }
+
+    private fun initTopUpComingEvent() {
+        topUpComingAdapter = TopUpComingAdapter()
+        binding.rvUpComing.adapter = topUpComingAdapter
+        binding.rvUpComing.setLayoutManager(CarouselLayoutManager())
+
+    }
+
+    private fun getTopUpComingEvent() {
+        mainViewModel.getTopUpComingEvent()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

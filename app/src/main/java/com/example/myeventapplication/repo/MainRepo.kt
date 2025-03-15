@@ -20,4 +20,9 @@ class MainRepo(private val apiService: ApiService) {
         val response = apiService.getAllEvent(active, query, limit)
         return if (!response.error) response.listEvents else emptyList()
     }
+
+    suspend fun getDetailEvent(eventId: String): EventData {
+        val response = apiService.getSingleEvent(eventId)
+        return if (!response.error) response.event else EventData.default()
+    }
 }

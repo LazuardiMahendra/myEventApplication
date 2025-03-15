@@ -1,4 +1,4 @@
-package com.example.myeventapplication.ui.upcoming
+package com.example.myeventapplication.ui.fragment.upcoming
 
 import android.os.Bundle
 import android.util.Log

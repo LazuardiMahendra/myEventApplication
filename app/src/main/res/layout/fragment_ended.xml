@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ended.DoneFragment">
+    tools:context=".ui.fragment.ended.DoneFragment">
 
     <com.google.android.material.search.SearchBar
         android:id="@+id/search_bar"
@@ -29,12 +29,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDoneEvent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
         android:overScrollMode="never"
+        android:paddingVertical="5dp"
         android:scrollbarSize="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
