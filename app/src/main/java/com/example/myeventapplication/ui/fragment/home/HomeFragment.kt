@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myeventapplication.ViewModel.MainViewModel
+import com.example.myeventapplication.viewModel.MainViewModel
 import com.example.myeventapplication.databinding.FragmentHomeBinding
 import com.example.myeventapplication.ui.adapter.TopDoneAdapter
 import com.example.myeventapplication.ui.adapter.TopUpComingAdapter
@@ -42,11 +41,7 @@ class HomeFragment : Fragment() {
         }
 
         mainViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
-            error?.let {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-                binding.tvError.visibility = View.VISIBLE
-                binding.tvError.text = it
-            }
+            Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
         }
 
         return root

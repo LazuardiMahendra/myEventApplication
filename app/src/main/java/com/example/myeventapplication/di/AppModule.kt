@@ -1,6 +1,6 @@
 package com.example.myeventapplication.di
 
-import com.example.myeventapplication.ViewModel.MainViewModel
+import com.example.myeventapplication.viewModel.MainViewModel
 import com.example.myeventapplication.network.ApiService
 import com.example.myeventapplication.network.Routing
 import com.example.myeventapplication.repo.MainRepo
