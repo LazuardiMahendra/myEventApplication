@@ -5,14 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
-import com.example.myeventapplication.R
-import com.example.myeventapplication.ViewModel.MainViewModel
+import com.example.myeventapplication.viewModel.MainViewModel
 import com.example.myeventapplication.databinding.ActivityDetailEventBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -32,6 +29,7 @@ class DetailEventActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         showLoading()
+        checkConnection()
 
         getDetailEvent(args.eventId)
         initViewDetailEvent()
@@ -103,5 +101,11 @@ class DetailEventActivity : AppCompatActivity() {
         val formattedDate = outputDate.format(date!!)
 
         return formattedDate
+    }
+
+    private fun checkConnection() {
+        mainViewModel.errorMessage.observe(this) { error ->
+            Toast.makeText(this, "$error", Toast.LENGTH_LONG).show()
+        }
     }
 }

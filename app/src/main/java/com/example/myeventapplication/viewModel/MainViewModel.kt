@@ -1,7 +1,6 @@
-package com.example.myeventapplication.ViewModel
+package com.example.myeventapplication.viewModel
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,6 @@ import com.example.myeventapplication.data.EventData
 import com.example.myeventapplication.repo.MainRepo
 import com.example.myeventapplication.utils.NetworkUtils
 import kotlinx.coroutines.launch
-import okhttp3.internal.EMPTY_REQUEST
 
 class MainViewModel(private val repo: MainRepo, private val context: Context) : ViewModel() {
 
@@ -95,13 +93,9 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
             _isLoading.value = true
             try {
                 val eventList = repo.getAllEvent(0, null, 5)
-                if (eventList != null) {
-                    _doneEvent.value = eventList
-                } else {
-                    _errorMessage.value = "Data tidak ditemukan"
-                }
+                _doneEvent.value = eventList
             } catch (e: Exception) {
-                _errorMessage.value = "Terjadi Kesalahan : ${e.toString()}"
+                _errorMessage.value = "Terjadi Kesalahan : ${e.message}"
             } finally {
                 _isLoading.value = false
             }
