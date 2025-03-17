@@ -24,7 +24,7 @@ class DoneFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentEndedBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -35,9 +35,9 @@ class DoneFragment : Fragment() {
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        mainViewModel.events.observe(viewLifecycleOwner, { event ->
+        mainViewModel.events.observe(viewLifecycleOwner) { event ->
             adapter.submitList(event)
-        })
+        }
         return root
     }
 
@@ -46,7 +46,7 @@ class DoneFragment : Fragment() {
 
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
-            searchView.editText.setOnEditorActionListener { textView, actionId, event ->
+            searchView.editText.setOnEditorActionListener { _, _, _ ->
                 keyword = searchView.text.toString()
                 searchBar.setText(keyword)
                 searchView.hide()

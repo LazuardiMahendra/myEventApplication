@@ -1,5 +1,6 @@
 package com.example.myeventapplication.ui.fragment.detail
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -45,6 +46,7 @@ class DetailEventActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initViewDetailEvent() {
         mainViewModel.eventsSingle.observe(this) { response ->
             if (response != null) {

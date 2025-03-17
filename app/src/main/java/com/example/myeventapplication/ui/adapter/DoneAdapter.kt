@@ -16,7 +16,7 @@ import com.example.myeventapplication.ui.fragment.home.HomeFragmentDirections
 
 class DoneAdapter : ListAdapter<EventData, DoneAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    class MyViewHolder(val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(model: EventData) {
             binding.tvTitle.text = model.name
             binding.tvSummary.text = model.summary

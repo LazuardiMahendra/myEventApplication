@@ -14,7 +14,7 @@ import com.example.myeventapplication.ui.fragment.home.HomeFragmentDirections
 
 class TopUpComingAdapter : ListAdapter<EventData, TopUpComingAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    class MyViewHolder(val binding: ItemUpcomingEventBinding) :
+    class MyViewHolder(private val binding: ItemUpcomingEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(model: EventData) {
             Glide.with(itemView.context).load(model.imageLogo).into(binding.carouselImageView)
@@ -22,7 +22,7 @@ class TopUpComingAdapter : ListAdapter<EventData, TopUpComingAdapter.MyViewHolde
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
+        parent: ViewGroup, viewType: Int,
     ): MyViewHolder {
         val bind =
             ItemUpcomingEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -41,13 +41,13 @@ class TopUpComingAdapter : ListAdapter<EventData, TopUpComingAdapter.MyViewHolde
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<EventData>() {
             override fun areItemsTheSame(
-                oldItem: EventData, newItem: EventData
+                oldItem: EventData, newItem: EventData,
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: EventData, newItem: EventData
+                oldItem: EventData, newItem: EventData,
             ): Boolean {
                 return oldItem == newItem
             }
