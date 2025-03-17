@@ -23,7 +23,7 @@ class UpcomingFragment : Fragment() {
     private var keyword: String? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentUpcomingBinding.inflate(inflater, container, false)
 
@@ -42,6 +42,11 @@ class UpcomingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mainViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            if (!error.isNullOrEmpty()) Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
+        }
+
 
         with(binding) {
             searchView.setupWithSearchBar(searchBar)

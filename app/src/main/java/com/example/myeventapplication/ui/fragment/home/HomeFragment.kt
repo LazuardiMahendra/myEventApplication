@@ -23,13 +23,17 @@ class HomeFragment : Fragment() {
     private lateinit var topUpComingAdapter: TopUpComingAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         mainViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+        mainViewModel.isCarouselLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBarCarousel.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
         mainViewModel.doneEvent.observe(viewLifecycleOwner) { events ->
@@ -41,7 +45,8 @@ class HomeFragment : Fragment() {
         }
 
         mainViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
-            Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
+            if (!error.isNullOrEmpty())
+                Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
         }
 
         return root

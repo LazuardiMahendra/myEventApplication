@@ -15,6 +15,8 @@ import com.example.myeventapplication.databinding.ActivityDetailEventBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
+import org.jsoup.Jsoup
+
 
 class DetailEventActivity : AppCompatActivity() {
 
@@ -56,12 +58,15 @@ class DetailEventActivity : AppCompatActivity() {
                 val dateEnd = parseDate(response.endTime)
                 val timeBegin = parseTime(response.beginTime)
                 val timeEnd = parseTime(response.endTime)
+                val quota = response.quota - response.registrants
 
                 val date: String = if (dateBegin == dateEnd) {
                     dateBegin
                 } else {
                     "$dateBegin - $dateEnd"
                 }
+
+                val description = convertHTMLtoString(response.description)
 
                 binding.tvTitle.text = response.name
                 binding.tvSummary.text = response.summary
@@ -70,7 +75,16 @@ class DetailEventActivity : AppCompatActivity() {
                 binding.tvDate.text = date
                 binding.tvTime.text = "$timeBegin - $timeEnd"
                 binding.tvLocation.text = response.cityName
-                binding.tvQuota.text = "${response.registrants} / ${response.quota}"
+                binding.tvQuota.text = "Sisa Kouta : $quota"
+                binding.webView.loadDataWithBaseURL(
+                    null,
+                    cleanHtmlContent(response.description),
+                    "text/html",
+                    "UTF-8",
+                    null
+                )
+
+
 
                 binding.btnRegister.setOnClickListener {
                     val url = response.link
@@ -107,7 +121,35 @@ class DetailEventActivity : AppCompatActivity() {
 
     private fun checkConnection() {
         mainViewModel.errorMessage.observe(this) { error ->
-            Toast.makeText(this, "$error", Toast.LENGTH_LONG).show()
+            if (!error.isNullOrEmpty())
+                Toast.makeText(this, "$error", Toast.LENGTH_LONG).show()
         }
     }
+
+    private fun convertHTMLtoString(str: String): String {
+        val document = Jsoup.parse(str)
+        val textOnly = document.text()
+        return textOnly
+    }
+
+    fun cleanHtmlContent(html: String): String {
+        val document = Jsoup.parse(html)
+
+        document.select("img").remove()
+
+        return """
+        <html>
+        <head>
+            <style>
+                body { font-family: sans-serif; padding: 16px; }
+                img { display: none; } /* Sembunyikan semua gambar */
+            </style>
+        </head>
+        <body>
+            ${document.body().html()}
+        </body>
+        </html>
+    """.trimIndent()
+    }
+
 }

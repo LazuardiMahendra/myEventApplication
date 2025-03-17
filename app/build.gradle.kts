@@ -66,5 +66,8 @@ dependencies {
     //koin
     implementation(libs.koin.android)
 
+    //jsoup
+    implementation(libs.jsoup)
+
 
 }

@@ -27,6 +27,9 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isCarouselLoading = MutableLiveData<Boolean>()
+    val isCarouselLoading: LiveData<Boolean> = _isCarouselLoading
+
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
@@ -35,6 +38,8 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
             if (!NetworkUtils.checkConnection(context)) {
                 _errorMessage.value = "Tidak Ada Koneksi Internet"
                 return@launch
+            } else {
+                _errorMessage.value = null
             }
             _isLoading.value = true
             try {
@@ -53,6 +58,8 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
             if (!NetworkUtils.checkConnection(context)) {
                 _errorMessage.value = "Tidak Ada Koneksi Internet"
                 return@launch
+            } else {
+                _errorMessage.value = null
             }
             _isLoading.value = true
             try {
@@ -71,15 +78,17 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
             if (!NetworkUtils.checkConnection(context)) {
                 _errorMessage.value = "Tidak Ada Koneksi Internet"
                 return@launch
+            } else {
+                _errorMessage.value = null
             }
-            _isLoading.value = true
+            _isCarouselLoading.value = true
             try {
                 val eventList = repo.getAllEvent(1, null, 5)
                 _upComingEvent.value = eventList
             } catch (e: Exception) {
                 _errorMessage.value = "Terjadi Kesalahan : ${e.message}"
             } finally {
-                _isLoading.value = false
+                _isCarouselLoading.value = false
             }
         }
     }
@@ -89,6 +98,8 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
             if (!NetworkUtils.checkConnection(context)) {
                 _errorMessage.value = "Tidak Ada Koneksi Internet"
                 return@launch
+            } else {
+                _errorMessage.value = null
             }
             _isLoading.value = true
             try {
@@ -107,6 +118,8 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
             if (!NetworkUtils.checkConnection(context)) {
                 _errorMessage.value = "Tidak Ada Koneksi Internet"
                 return@launch
+            } else {
+                _errorMessage.value = null
             }
             _isLoading.value = true
             try {
