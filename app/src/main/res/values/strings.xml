@@ -11,4 +11,10 @@
     <string name="txt_example_search_bar">e.g Belajar Android</string>
     <string name="txt_daftar_sekarang">Kunjungi Dicoding</string>
     <string name="error_tidak_diketahui">Error tidak diketahui</string>
+    <string name="txt_main_banner">Main Banner</string>
+    <string name="txt_icon">Icon</string>
+    <string name="txt_owner_by">Diselengarakan oleh :</string>
+    <string name="dicoding_event">Dicoding Event</string>
+    <string name="coba_periksa_koneksi">Coba periksa koneksi</string>
+    <string name="txt_item_banner">Item Banner</string>
 </resources>

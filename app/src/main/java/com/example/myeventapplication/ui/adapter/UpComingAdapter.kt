@@ -14,7 +14,7 @@ import com.example.myeventapplication.ui.fragment.upcoming.UpcomingFragmentDirec
 
 class UpComingAdapter : ListAdapter<EventData, UpComingAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    class MyViewHolder(val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(model: EventData) {
             binding.tvTitle.text = model.name
             binding.tvSummary.text = model.summary

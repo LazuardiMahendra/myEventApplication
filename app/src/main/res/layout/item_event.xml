@@ -16,7 +16,8 @@
             android:id="@+id/iv_poster"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/iv_example_banner"
+            android:background="@color/black"
+            android:contentDescription="@string/txt_item_banner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +47,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_poster"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:ignore="SmallSp"
             tools:text="@tools:sample/lorem/random" />
 
 
