@@ -66,7 +66,6 @@ class DetailEventActivity : AppCompatActivity() {
                     "$dateBegin - $dateEnd"
                 }
 
-                val description = convertHTMLtoString(response.description)
 
                 binding.tvTitle.text = response.name
                 binding.tvSummary.text = response.summary
@@ -76,15 +75,7 @@ class DetailEventActivity : AppCompatActivity() {
                 binding.tvTime.text = "$timeBegin - $timeEnd"
                 binding.tvLocation.text = response.cityName
                 binding.tvQuota.text = "Sisa Kouta : $quota"
-                binding.webView.loadDataWithBaseURL(
-                    null,
-                    cleanHtmlContent(response.description),
-                    "text/html",
-                    "UTF-8",
-                    null
-                )
-
-
+                binding.tvDesc.text = convertHTMLtoString(response.description)
 
                 binding.btnRegister.setOnClickListener {
                     val url = response.link
@@ -121,35 +112,19 @@ class DetailEventActivity : AppCompatActivity() {
 
     private fun checkConnection() {
         mainViewModel.errorMessage.observe(this) { error ->
-            if (!error.isNullOrEmpty())
-                Toast.makeText(this, "$error", Toast.LENGTH_LONG).show()
+            if (!error.isNullOrEmpty()) Toast.makeText(this, "$error", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun convertHTMLtoString(str: String): String {
-        val document = Jsoup.parse(str)
-        val textOnly = document.text()
-        return textOnly
-    }
-
-    fun cleanHtmlContent(html: String): String {
+    private fun convertHTMLtoString(html: String): String {
         val document = Jsoup.parse(html)
+        val paragraphs = document.select("p").map { it.text() }
 
-        document.select("img").remove()
-
-        return """
-        <html>
-        <head>
-            <style>
-                body { font-family: sans-serif; padding: 16px; }
-                img { display: none; } /* Sembunyikan semua gambar */
-            </style>
-        </head>
-        <body>
-            ${document.body().html()}
-        </body>
-        </html>
-    """.trimIndent()
+        return if (paragraphs.size >= 2) {
+            "${paragraphs[0]}\n\n${paragraphs[1]}"
+        } else {
+            paragraphs.firstOrNull() ?: ""
+        }
     }
 
 }
