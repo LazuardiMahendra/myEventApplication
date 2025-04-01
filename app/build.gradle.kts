@@ -70,5 +70,12 @@ dependencies {
     //jsoup
     implementation(libs.jsoup)
 
+    //pref
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.kotlinx.coroutines.android)
+
+
 
 }

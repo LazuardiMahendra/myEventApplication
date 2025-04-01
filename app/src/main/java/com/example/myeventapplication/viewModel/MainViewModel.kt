@@ -4,13 +4,19 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myeventapplication.data.EventData
+import com.example.myeventapplication.pref.SettingPreferences
 import com.example.myeventapplication.repo.MainRepo
 import com.example.myeventapplication.utils.NetworkUtils
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repo: MainRepo, private val context: Context) : ViewModel() {
+class MainViewModel(
+    private val repo: MainRepo,
+    private val context: Context,
+    private val pref: SettingPreferences,
+) : ViewModel() {
 
     private val _events = MutableLiveData<List<EventData>>()
     val events: LiveData<List<EventData>> = _events
@@ -32,6 +38,7 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
 
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
+
 
     fun getUpComingEvent(keyword: String?) {
         viewModelScope.launch {
@@ -130,6 +137,16 @@ class MainViewModel(private val repo: MainRepo, private val context: Context) : 
             } finally {
                 _isLoading.value = false
             }
+        }
+    }
+
+    fun getThemeSettings(): LiveData<Boolean> {
+        return pref.getThemeSetting().asLiveData()
+    }
+
+    fun saveThemeSetting(isDarkModeActive: Boolean) {
+        viewModelScope.launch {
+            pref.saveThemeSetting(isDarkModeActive)
         }
     }
 
