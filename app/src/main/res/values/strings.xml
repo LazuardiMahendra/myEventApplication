@@ -5,6 +5,11 @@
     <string name="title_home">Home</string>
     <string name="title_upcoming">Upcoming</string>
     <string name="title_ended">Ended</string>
+    <string name="title_setting">Setting</string>
+
+    <string name="dark_mode">Dark Mode</string>
+
+
     <string name="txt_dicoding_event">Dicoding Event</string>
     <string name="txtt_upcoming_event">Upcoming Event</string>
     <string name="txt_finished_event">Finished Event</string>
@@ -18,4 +23,6 @@
     <string name="coba_periksa_koneksi">Coba periksa koneksi</string>
     <string name="txt_item_banner">Item Banner</string>
     <string name="daftar_gratis">Daftar Gratis</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

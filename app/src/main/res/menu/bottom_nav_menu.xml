@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_event_done"
         android:title="@string/title_ended" />
 
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/title_setting" />
+
 </menu>
